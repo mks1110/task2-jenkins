@@ -37,8 +37,8 @@ pipeline {
                 docker rm flask-app && echo "removed flask-app" || echo "flask-app does not exist"
                 docker stop db && echo "stopped db" || echo "db is not running"
                 docker rm db && echo "removed db" || echo "db does not exist"
-                docker run -d --name flask-app --network task2-net -e YOUR_NAME=${YOUR_NAME} mks1011/task2-app
-                docker run -d --name db --network task2-net mks1011/task2-db
+                docker run -d --name db --network task2-net -e MYSQL_ROOT_PASSWORD=supersecret-password mks1011/task2-db
+                docker run -d --name flask-app --network task2-net -e MYSQL_ROOT_PASSWORD=supersecret-password -e YOUR_NAME=${YOUR_NAME} mks1011/task2-app
                 docker run -d --name nginx --network task2-net -p 80:80 mks1011/task2-nginx
                 '''
             }
