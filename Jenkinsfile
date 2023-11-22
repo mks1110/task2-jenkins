@@ -1,8 +1,7 @@
 pipeline {
     agent any
     environment {
-        MYSQL_ROOT_PASSWORD= credentials("MYSQL_ROOT_PASSWORD")
-        YOUR_NAME = credentials("YOUR_NAME")
+        MYSQL_ROOT_PASSWORD = credentials("MYSQL_ROOT_PASSWORD")
     }
     stages {
         stage('Build') {
@@ -26,7 +25,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh '''
-                sed -e 's,{{password}}, '${MY_SQL_ROOT_PASSWORD}',g;' db-password.yaml | kubectl apply -f -
+                sed -e 's,{{password}}, '${MYSQL_ROOT_PASSWORD}',g;' db-password.yaml | kubectl apply -f -
                 kubectl apply -f nginx-config.yaml
                 kubectl apply -f nginx-pod.yaml
                 kubectl apply -f task2.yaml
