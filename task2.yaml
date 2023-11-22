@@ -25,7 +25,7 @@ spec:
         - containerPort: 5000
       env:
         - name: MYSQL_ROOT_PASSWORD
-          value From:
+          valueFrom:
             secretKeyRef: 
               name: db-root-password
               key: password
@@ -58,7 +58,7 @@ spec:
         - containerPort: 3306
       env:
         - name: MYSQL_ROOT_PASSWORD
-          value From:
+          valueFrom:
             secretKeyRef: 
               name: db-root-password
               key: password
