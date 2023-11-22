@@ -25,7 +25,10 @@ spec:
         - containerPort: 5000
       env:
         - name: MYSQL_ROOT_PASSWORD
-          value: supersecret-password
+          value From:
+            secretKeyRef: 
+              name: db-root-password
+              key: password
 
 ---          
 apiVersion: v1
@@ -55,4 +58,7 @@ spec:
         - containerPort: 3306
       env:
         - name: MYSQL_ROOT_PASSWORD
-          value: supersecret-password
+          value From:
+            secretKeyRef: 
+              name: db-root-password
+              key: password
